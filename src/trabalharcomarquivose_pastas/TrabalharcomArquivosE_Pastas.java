@@ -6,8 +6,10 @@
 package trabalharcomarquivose_pastas;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -22,18 +24,21 @@ public class TrabalharcomArquivosE_Pastas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String path = "D:\\OneDrive\\OneDrive - Universidade da Beira Interior\\UDEMY\\POO\\trabalharcomArquivosE_Pastas\\src\\in.txt";
+        //Escrita em um arquivo
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+        String[] lines = new String[]{"Como um podcast é em forma de conversa", "compensa criarmos um roteiro?", "Ou uma organização das ideias seria melhor"};
+        String path = "D:\\OneDrive\\OneDrive - Universidade da Beira Interior\\UDEMY\\POO\\trabalharcomArquivosE_Pastas\\src\\out.txt";
 
-            String line = br.readLine();
-            while (line != null) {
-                System.out.println(line);
-                line = br.readLine();
+        
+        //o path, true-indica que nao quero recriar o arquivo. Mas sim, adicionar o que já existe. Quando não usamos, ele destroe tudo que tem e cria de novo com o arquivo existente
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+            for (String line : lines) {
+                bw.write(line);
+                bw.newLine();
             }
 
         } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         }
 
     }
